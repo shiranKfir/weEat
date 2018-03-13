@@ -23,22 +23,27 @@ ActiveRecord::Schema.define(version: 20180311160940) do
   end
 
   create_table "restaurants", force: :cascade do |t|
+    t.bigint "cuisine_id"
     t.string "title"
-    t.string "genre"
     t.integer "rating"
     t.boolean "has_10bis"
     t.string "address"
     t.integer "delivery_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cuisine_id"], name: "index_restaurants_on_cuisine_id"
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.string "name"
+    t.bigint "restaurant_id"
+    t.string "reviewer_name"
     t.integer "rating"
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
   end
 
+  add_foreign_key "restaurants", "cuisines"
+  add_foreign_key "reviews", "restaurants"
 end

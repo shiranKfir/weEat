@@ -13,12 +13,17 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :review_name %>
+    <%= form.text_field :reviewer_name, id: :review_reviewer_name %>
   </div>
 
   <div class="field">
     <%= form.label :rating %>
     <%= form.number_field :rating, id: :review_rating %>
+  </div>
+
+  <div class="field">
+    <%= form.label :restaurant_id %>
+    <%= form.number_field :restaurant_id, id: :review_restaurant_id %>
   </div>
 
   <div class="field">
