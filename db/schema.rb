@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20180311160940) do
     t.integer "rating"
     t.boolean "has_10bis"
     t.string "address"
-    t.integer "delivery_time"
+    t.integer "max_delivery_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cuisine_id"], name: "index_restaurants_on_cuisine_id"
