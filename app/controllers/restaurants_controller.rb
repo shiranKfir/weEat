@@ -12,7 +12,6 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
-    @restaurant = Restaurant.find(params[:id])
     render json: @restaurant
   end
 
@@ -22,8 +21,8 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
       render json: @restaurant, status: :created
-      else
-        render json: @restaurant.errors, status: :unprocessable_entity
+    else
+      render json: @restaurant.errors, status: :bad_request
     end
   end
 
@@ -31,9 +30,9 @@ class RestaurantsController < ApplicationController
   # PATCH/PUT /restaurants/1.json
   def update
     if @restaurant.update(restaurant_params)
-      render json: :show, status: :ok, location: @restaurant
+      render json: @restaurant, status: :ok
     else
-      render json: @restaurant.errors, status: :unprocessable_entity
+      render json: @restaurant.errors, status: :bad_request
     end
   end
 
@@ -43,7 +42,7 @@ class RestaurantsController < ApplicationController
     if @restaurant.destroy
       head :no_content, status: :ok
     else
-      render json: @restaurant.errors, status: :unprocessable_entity
+      render json: @restaurant.errors, status: :bad_request
     end
   end
 
@@ -51,6 +50,8 @@ class RestaurantsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_restaurant
       @restaurant = Restaurant.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render json: { error: "Restaurant does not exist" }, status: :not_found
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
