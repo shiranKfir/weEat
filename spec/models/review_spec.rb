@@ -18,16 +18,4 @@ describe Review, type: :model do
       expect(restaurant.rating).to eq(2)
     end
   end
-
-  context 'after destroy' do
-    it 'should update the restaurant ranking to 1' do
-      #Review.last.destroy
-      #puts '#############################'
-      #puts restaurant.reviews.length
-    end
-  end
 end
-
-
-#Review.last.destroy
-#expect(restaurant.reload.rating).to eq(1)
