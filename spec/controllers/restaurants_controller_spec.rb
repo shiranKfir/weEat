@@ -42,9 +42,6 @@ describe Api::V1::RestaurantsController, type: :controller do
       it 'returns bad request error' do
         post :create, params: {title: new_restaurant.title, address: new_restaurant.address, has_10bis: true,
                                max_delivery_time: 20, cuisine_id: cuisine.id}
-        parsed_response = JSON.parse(response.body)
-        puts '################'
-        puts parsed_response
         expect(response).to be_bad_request
       end
     end
@@ -52,9 +49,6 @@ describe Api::V1::RestaurantsController, type: :controller do
     context 'not sending params in request' do
       it 'returns bad request error' do
         post :create
-        parsed_response = JSON.parse(response.body)
-        puts '################'
-        puts parsed_response
         expect(response).to be_bad_request
       end
     end
