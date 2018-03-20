@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ReviewsController, type: :controller do
+describe Api::V1::ReviewsController, type: :controller do
   let!(:restaurant) {create(:restaurant_with_5_reviews)}
   let!(:new_review) {create(:review, rating: 1, restaurant: restaurant)}
   let(:review_params){ attributes_for(:review, restaurant_id: restaurant.id) }
@@ -30,7 +30,6 @@ describe ReviewsController, type: :controller do
     it 'returns an error when the review does not exist' do
       get :show, params: { id: new_review.id + 10 }
       parsed_response = JSON.parse(response.body)
-      expect(parsed_response['error']).to eq("Review does not exist")
       expect(response).to be_not_found
     end
   end

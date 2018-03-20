@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CuisinesController, type: :controller do
+describe Api::V1::CuisinesController, type: :controller do
   describe '#index' do
     it 'returns all the cuisines' do
       create_list(:cuisine, 5)
@@ -47,9 +47,9 @@ describe CuisinesController, type: :controller do
     it 'deletes the restaurant' do
       cuisine = create(:cuisine)
       id = cuisine.id
+      totalCuisines = Cuisine.count
       delete :destroy, params: { id: id }
-      get :show, params: { id: id }
-      expect(response).to be_not_found
+      expect(Cuisine.count).to eq(totalCuisines - 1)
     end
   end
 end

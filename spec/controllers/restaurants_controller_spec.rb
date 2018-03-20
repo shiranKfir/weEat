@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe RestaurantsController, type: :controller do
+describe Api::V1::RestaurantsController, type: :controller do
   let!(:cuisine){ create(:cuisine) }
   let(:new_restaurant) {create(:restaurant, title: "Burger king", address: "Dizengoff")}
   describe '#index' do
@@ -24,8 +24,6 @@ describe RestaurantsController, type: :controller do
 
     it 'returns an error when the restaurant does not exist' do
       get :show, params: { id: restaurant.id + 10 }
-      parsed_response = JSON.parse(response.body)
-      expect(parsed_response['error']).to eq("Restaurant does not exist")
       expect(response).to be_not_found
     end
   end
@@ -44,6 +42,9 @@ describe RestaurantsController, type: :controller do
       it 'returns bad request error' do
         post :create, params: {title: new_restaurant.title, address: new_restaurant.address, has_10bis: true,
                                max_delivery_time: 20, cuisine_id: cuisine.id}
+        parsed_response = JSON.parse(response.body)
+        puts '################'
+        puts parsed_response
         expect(response).to be_bad_request
       end
     end
@@ -51,6 +52,9 @@ describe RestaurantsController, type: :controller do
     context 'not sending params in request' do
       it 'returns bad request error' do
         post :create
+        parsed_response = JSON.parse(response.body)
+        puts '################'
+        puts parsed_response
         expect(response).to be_bad_request
       end
     end
