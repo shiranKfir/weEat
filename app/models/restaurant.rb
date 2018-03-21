@@ -12,6 +12,6 @@ class Restaurant < ApplicationRecord
 
   def update_rating
     rating_val = reviews.exists? ? reviews.average(:rating).round : 0
-    update_attribute(:rating, rating_val)
+    self.rating = rating_val
   end
 end

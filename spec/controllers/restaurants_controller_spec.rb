@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Api::V1::RestaurantsController, type: :controller do
   let!(:cuisine){ create(:cuisine) }
-  let(:new_restaurant) {create(:restaurant, title: "Burger king", address: "Dizengoff")}
+  let(:existing_restaurant) {create(:restaurant, title: "Burger king", address: "Dizengoff")}
   describe '#index' do
     it 'returns all the restaurants' do
       create_list(:restaurant, 5)
@@ -40,7 +40,7 @@ describe Api::V1::RestaurantsController, type: :controller do
 
     context 'trying to create restaurant that already exists on a specific address' do
       it 'returns bad request error' do
-        post :create, params: {title: new_restaurant.title, address: new_restaurant.address, has_10bis: true,
+        post :create, params: {title: existing_restaurant.title, address: existing_restaurant.address, has_10bis: true,
                                max_delivery_time: 20, cuisine_id: cuisine.id}
         expect(response).to be_bad_request
       end
@@ -56,13 +56,13 @@ describe Api::V1::RestaurantsController, type: :controller do
 
   describe '#update' do
     it 'updates restaurant and returns it' do
-      put :update, params: { id: new_restaurant.id, address: 'bugrashov' }
+      put :update, params: { id: existing_restaurant.id, address: 'bugrashov' }
       parsed_response = JSON.parse(response.body)
       expect(response).to have_http_status(:ok)
       expect(parsed_response['address']).to eq('bugrashov')
     end
     it 'returns an error when the restaurant does not exist' do
-      put :update, params: { id: new_restaurant.id + 10, address: 'bugrashov' }
+      put :update, params: { id: existing_restaurant.id + 10, address: 'bugrashov' }
       expect(response).to be_not_found
     end
   end
