@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe ReviewsController, type: :controller do
   let!(:restaurant) {create(:restaurant_with_5_reviews)}
-  let!(:new_review) {create(:review, rating: 1, restaurant: restaurant)}
+  let!(:exisiting_review) {create(:review, rating: 1, restaurant: restaurant)}
   let(:review_params){ attributes_for(:review, restaurant_id: restaurant.id) }
   let(:review_params_with_bad_rating){ attributes_for(:review, restaurant_id: restaurant.id, rating: 10) }
 
@@ -21,14 +21,14 @@ describe ReviewsController, type: :controller do
 
   describe '#show' do
     it 'returns data of a single review' do
-      get :show, params: { id: new_review.id }
+      get :show, params: { id: exisiting_review.id }
       parsed_response = JSON.parse(response.body)
-      expect(parsed_response['id']).to eq new_review.id
+      expect(parsed_response['id']).to eq exisiting_review.id
       expect(response).to be_success
     end
 
     it 'returns an error when the review does not exist' do
-      get :show, params: { id: new_review.id + 10 }
+      get :show, params: { id: exisiting_review.id + 10 }
       parsed_response = JSON.parse(response.body)
       expect(parsed_response['error']).to eq("Review does not exist")
       expect(response).to be_not_found
@@ -57,24 +57,31 @@ describe ReviewsController, type: :controller do
         expect(response).to be_bad_request
       end
     end
+
+    context 'sending some of the params in request' do
+      it 'should fail and return bad request error' do
+        post :create, params: { title: 'Pizza Place' }
+        expect(response).to be_bad_request
+      end
+    end
   end
 
   describe '#update' do
     it 'updates review and returns it' do
-      put :update, params: { id: new_review.id, rating: 3 }
+      put :update, params: { id: exisiting_review.id, rating: 3 }
       parsed_response = JSON.parse(response.body)
       expect(response).to have_http_status(:ok)
       expect(parsed_response['rating']).to eq 3
     end
     it 'returns an error when the review does not exist' do
-      put :update, params: { id: new_review.id + 10, rating: 3 }
+      put :update, params: { id: exisiting_review.id + 10, rating: 3 }
       expect(response).to be_not_found
     end
   end
 
   describe '#destroy' do
     it 'deletes the review' do
-      id = new_review.id
+      id = exisiting_review.id
       delete :destroy, params: { id: id }
       get :show, params: { id: id }
       expect(response).to be_not_found

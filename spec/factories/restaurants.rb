@@ -3,8 +3,8 @@ FactoryBot.define do
     title               { Faker::Name.name }
     has_10bis           { true }
     address             { Faker::Address.street_address }
-    max_delivery_time   Random.rand(1..120)
-    association :cuisine, factory: :cuisine
+    max_delivery_time   Random.rand(120)
+    association :cuisine
   end
   factory :restaurant_with_5_reviews, parent: :restaurant do
     transient do
