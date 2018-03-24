@@ -1,0 +1,41 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  margin: 0
+}
+
+.bgimage {
+  width:100%;
+  height:300px;
+  background: url('/images/we-Eat-Header3.jpeg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:cover;
+  background-attachment: fixed;
+
+  div {
+    text-align: center;
+    color: white;
+    font-size: 45px;
+  }
+}
+
+
+.container-fluid {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.filters {
+  height: 100px;
+  background-color: #F44336;
+}
+
+.row{
+  margin-left: 0;
+  margin-right: 0;
+}
+
+
