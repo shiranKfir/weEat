@@ -2,17 +2,19 @@
   "name": "weEat",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^3.3.1",
+    "@rails/webpacker": "^3.4.1",
+    "axios": "^0.18.0",
     "babel-preset-react": "^6.24.1",
+    "bootstrap": "^4.0.0",
     "material-ui": "^0.20.0",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "webpack-dev-server": "^2.11.1"
   },
   "devDependencies": {
     "babel-preset-stage-0": "^6.24.1",
-    "webpack-cli": "^2.0.11",
-    "webpack-dev-server": "^2.11.1"
+    "webpack-cli": "^2.0.13"
   }
 }
