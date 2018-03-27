@@ -6,8 +6,7 @@ class Search extends React.Component {
     constructor(props){
         super(props);
     }
-    componentDidMount(){
-    }
+
     render(){
         return (
             <FormGroup className="restaurant-search" bsSize="large">

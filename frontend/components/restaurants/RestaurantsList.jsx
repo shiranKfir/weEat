@@ -9,53 +9,27 @@ class RestaurantsList extends React.Component {
     constructor(props){
         super(props);
     }
-    componentDidMount(){
+
+    componentWillReceiveProps(nextProps) {
+        this.restaurants = nextProps.data.map(val =>
+            <Card key={val.id}>
+                <CardHeader
+                    title={val.title}
+                    subtitle={val.address}
+                />
+                <CardText expandable={false}>
+                    // add more info here
+                </CardText>
+            </Card>
+        );
     }
+
     render(){
-        console.log("aaa", this.props);
+
         return (
             <MuiThemeProvider>
                 <div>
-                    <Card>
-                        <CardHeader
-                            title="Without Avatar"
-                            subtitle="Subtitle"
-                        />
-                        <CardText expandable={false}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                        </CardText>
-                    </Card>
-                    <Card>
-                        <CardHeader
-                            title="Without Avatar"
-                            subtitle="Subtitle"
-                        />
-                        <CardText expandable={false}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                        </CardText>
-                    </Card>
-                    <Card>
-                        <CardHeader
-                            title="Without Avatar"
-                            subtitle="Subtitle"
-                        />
-                        <CardText expandable={false}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                        </CardText>
-                    </Card>
-                    <Card>
-                        <CardHeader
-                            title="Without Avatar"
-                            subtitle="Subtitle"
-                        />
-                        <CardText expandable={false}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                        </CardText>
-                    </Card>
+                    {this.restaurants}
                 </div>
             </MuiThemeProvider>
         );

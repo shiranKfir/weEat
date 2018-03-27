@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  height: 100%;
 }
 
 .container-fluid{
@@ -10,4 +11,9 @@ body {
     margin-right: 0;
     margin-left: 0;
   }
+}
+
+.custome-col{
+  padding-right: 0;
+  padding-left: 0;
 }

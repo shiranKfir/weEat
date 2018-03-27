@@ -4,17 +4,7 @@ import Header from './header/Header';
 import Filters from './filters/Filters';
 import RestaurantsList from './restaurants/RestaurantsList'
 import Api from '../api/Api';
-
-// const App = () => (
-//     <div>
-//         <Grid fluid={true}>
-//             <Header/>
-//             <Filters/>
-//         </Grid>
-//     </div>
-// );
-//
-// export default App;
+import Map from './map/Map';
 
 class App extends React.Component {
     constructor(props){
@@ -30,18 +20,23 @@ class App extends React.Component {
         this.setState({data: {cuisines, restaurants}});
     }
     render(){
-
         return (
             <div>
                 <Grid fluid={true}>
                     <Header data={this.state.data}/>
                     <Filters/>
-                    <Row style={{padding: 50}}>
-                        <Col md={4} style={{height: "430px", overflow: "auto"}}>
+                    <Row>
+                        <Col className="custome-col" md={4} style={{height: window.innerHeight - 400, overflow: "auto"}}>
                             <RestaurantsList data={this.state.data.restaurants}/>
                         </Col>
-                        <Col md={8} style={{height: "100%"}}>
-                            <h1>sfghsfghsfg</h1>
+                        <Col className="custome-col" md={8}>
+                            <Map
+                                isMarkerShown
+                                googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+                                loadingElement={<div style={{ height: `100%` }} />}
+                                containerElement={<div style={{ height: window.innerHeight - 400 }} />}
+                                mapElement={<div style={{ height: `100%` }} />}
+                            />
                         </Col>
                     </Row>
                 </Grid>

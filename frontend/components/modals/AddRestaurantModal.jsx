@@ -29,10 +29,6 @@ class AddRestaurantModal extends React.Component {
         };
     }
 
-    componentDidMount() {
-
-    }
-
     componentWillReceiveProps(nextProps) {
         this.cuisineItems = nextProps.cuisines.map(val =>
             <MenuItem value={val.id} key={val.id} primaryText={val.name}/>
