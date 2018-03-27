@@ -11,10 +11,11 @@
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
-    "webpack-dev-server": "^2.11.1"
+    "react-material-ui-form-validator": "^1.1.0"
   },
   "devDependencies": {
     "babel-preset-stage-0": "^6.24.1",
-    "webpack-cli": "^2.0.13"
+    "webpack-cli": "^2.0.13",
+    "webpack-dev-server": "^2.11.1"
   }
 }

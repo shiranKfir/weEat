@@ -11,6 +11,11 @@ class Api {
         return axios.get(`${url}`);
     }
 
+    postData(path, data) {
+        let url = `${this.baseUrl}${path}`;
+        return axios.post(`${url}`, data);
+    }
+
     // async getCuisines() {
     //     const results = await axios.get(`${apiUrl} + /cuisines`);
     //     console.log("results", results);
