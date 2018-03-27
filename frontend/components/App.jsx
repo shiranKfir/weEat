@@ -2,7 +2,7 @@ import React from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
 import Header from './header/Header';
 import Filters from './filters/Filters';
-import RestaurantsList from './restaurants/RestaurantsList'
+import RestaurantsList from './restaurants/list/RestaurantsList'
 import Api from '../api/Api';
 import Map from './map/Map';
 

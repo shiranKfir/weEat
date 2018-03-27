@@ -1,0 +1,28 @@
+.icon{
+  position: relative;
+  bottom: 10px;
+}
+
+.restaurant-details{
+  line-height: 2;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.54);
+
+  .title{
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.87);
+  }
+
+  .other{
+    span{
+      margin-right: 15px;
+    }
+  }
+
+  .tenBis{
+    img{
+      width: 40px;
+    }
+  }
+}

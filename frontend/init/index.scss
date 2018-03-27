@@ -3,6 +3,20 @@ body {
   height: 100%;
 }
 
+@font-face {
+  font-family: 'ef_cuisinesregular';
+  src: url('./assets/efcuisines-regular-webfont.eot');
+  src: url('./assets/efcuisines-regular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('./assets/efcuisines-regular-webfont.woff') format('woff'),
+  url('./assets/efcuisines-regular-webfont.ttf') format('truetype'),
+  url('./assets/efcuisines-regular-webfont.svg#webfont') format('svg');
+}
+
+.cuisine_font {
+  font-family: 'ef_cuisinesregular', sans-serif;
+  font-size: 3em;
+}
+
 .container-fluid{
   padding-left: 0;
   padding-right: 0;
