@@ -40,7 +40,7 @@ class RestaurantsController < ApplicationController
   # DELETE /restaurants/1.json
   def destroy
     if @restaurant.destroy
-      head :no_content, status: :ok
+      head :ok
     else
       render json: @restaurant.errors, status: :bad_request
     end

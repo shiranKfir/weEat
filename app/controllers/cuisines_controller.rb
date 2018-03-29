@@ -37,7 +37,7 @@ class CuisinesController < ApplicationController
   # DELETE /cuisines/1.json
   def destroy
     if @cuisine.destroy
-      head :no_content, status: :ok
+      head :ok
     else
       render json: @cuisine.errors, status: :unprocessable_entity
     end

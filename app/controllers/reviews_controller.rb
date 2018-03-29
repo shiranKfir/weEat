@@ -41,7 +41,7 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1.json
   def destroy
     if @review.destroy
-      head :no_content, status: :ok
+      head :ok
     else
       render json: @review.errors, status: :unprocessable_entity
     end

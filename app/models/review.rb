@@ -6,6 +6,7 @@ class Review < ApplicationRecord
 
   after_create :update_restaurant_rating
   after_destroy :update_restaurant_rating
+  after_update :update_restaurant_rating
 
   def update_restaurant_rating
     restaurant.update_rating
