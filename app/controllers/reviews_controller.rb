@@ -12,8 +12,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/1
   # GET /reviews/1.json
   def show
-    @review = Review.find(params[:id])
-    render json: @review
+    render json: @review if @review.present?
   end
 
   # POST /reviews
@@ -24,7 +23,7 @@ class ReviewsController < ApplicationController
     if @review.save
       render json: @review, status: :created
     else
-      render json: @review.errors, status: :unprocessable_entity
+      render json: @review.errors, status: :bad_request
     end
   end
 
@@ -32,7 +31,7 @@ class ReviewsController < ApplicationController
   # PATCH/PUT /reviews/1.json
   def update
     if @review.update(review_params)
-      render json: :show, status: :ok, location: @review
+      render json: @review, status: :ok
     else
       render json: @review.errors, status: :unprocessable_entity
     end
@@ -42,7 +41,7 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1.json
   def destroy
     if @review.destroy
-      head :no_content, status: :ok
+      head :ok
     else
       render json: @review.errors, status: :unprocessable_entity
     end
@@ -52,6 +51,8 @@ class ReviewsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_review
       @review = Review.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render json: { error: "Review does not exist" }, status: :not_found
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
