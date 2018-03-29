@@ -7,9 +7,9 @@ describe Api::V1::RestaurantsController, type: :controller do
     it 'returns all the restaurants' do
       create_list(:restaurant, 5)
       get :index, format: :json
+      expect(response).to be_success
       parsed_response = JSON.parse(response.body)
       expect(parsed_response.count).to eq(5)
-      expect(response).to be_success
     end
   end
 
@@ -72,6 +72,7 @@ describe Api::V1::RestaurantsController, type: :controller do
     it 'deletes the restaurant' do
       id = restaurant.id
       delete :destroy, params: { id: id }
+      expect(response).to have_http_status(:ok)
       get :show, params: { id: id }
       expect(response).to be_not_found
     end
