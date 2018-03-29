@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-describe CuisinesController, type: :controller do
+describe Api::V1::CuisinesController, type: :controller do
   describe '#index' do
     it 'returns all the cuisines' do
       create_list(:cuisine, 5)
       get :index, format: :json
+      expect(response).to be_success
       parsed_response = JSON.parse(response.body)
       expect(parsed_response.count).to eq(5)
-      expect(response).to be_success
     end
   end
 
@@ -49,10 +49,10 @@ describe CuisinesController, type: :controller do
       cuisine = create(:cuisine)
       expect(response).to have_http_status(:ok)
       id = cuisine.id
+      totalCuisines = Cuisine.count
       delete :destroy, params: { id: id }
       expect(response).to have_http_status(:ok)
-      get :show, params: { id: id }
-      expect(response).to be_not_found
+      expect(Cuisine.count).to eq(totalCuisines - 1)
     end
   end
 end

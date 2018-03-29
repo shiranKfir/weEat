@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe RestaurantsController, type: :controller do
+describe Api::V1::RestaurantsController, type: :controller do
   let!(:cuisine){ create(:cuisine) }
   let(:existing_restaurant) {create(:restaurant, title: "Burger king", address: "Dizengoff")}
   describe '#index' do
@@ -24,8 +24,6 @@ describe RestaurantsController, type: :controller do
 
     it 'returns an error when the restaurant does not exist' do
       get :show, params: { id: restaurant.id + 10 }
-      parsed_response = JSON.parse(response.body)
-      expect(parsed_response['error']).to eq("Restaurant does not exist")
       expect(response).to be_not_found
     end
   end
