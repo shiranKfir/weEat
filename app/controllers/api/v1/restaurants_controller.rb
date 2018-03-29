@@ -6,8 +6,7 @@ class Api::V1::RestaurantsController < ApplicationController
 
   # GET /restaurants
   def index
-    @restaurants = Restaurant.all
-    render json: @restaurants
+    render json: Restaurant.all
   end
 
   # GET /restaurants/1
@@ -30,15 +29,16 @@ class Api::V1::RestaurantsController < ApplicationController
   # DELETE /restaurants/1
   def destroy
     @restaurant.destroy
-    head :no_content, status: :ok
+    head :ok
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_restaurant
-      @restaurant = Restaurant.find(params[:id])
+      @restaurant = Restaurant.find(params.require(:id))
     end
 
+  private
     # Never trust parameters from the scary internet, only allow the white list through.
     def restaurant_params
       params.permit(:title, :cuisine_id, :rating, :has_10bis, :address, :max_delivery_time)

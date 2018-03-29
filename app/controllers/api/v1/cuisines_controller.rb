@@ -6,8 +6,7 @@ class Api::V1::CuisinesController < ApplicationController
 
   # GET /cuisines
   def index
-    @cuisines = Cuisine.all
-    render json: @cuisines
+    render json: Cuisine.all
   end
 
   # POST /cuisines
@@ -25,15 +24,16 @@ class Api::V1::CuisinesController < ApplicationController
   # DELETE /cuisines/1
   def destroy
     @cuisine.destroy
-    head :no_content, status: :ok
+    head :ok
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cuisine
-      @cuisine = Cuisine.find(params[:id])
+      @cuisine = Cuisine.find(params.require(:id))
     end
 
+  private
     # Never trust parameters from the scary internet, only allow the white list through.
     def cuisine_params
       params.permit(:name, :icon)
