@@ -82,6 +82,7 @@ describe Api::V1::ReviewsController, type: :controller do
     it 'deletes the review' do
       id = exisiting_review.id
       delete :destroy, params: { id: id }
+      expect(response).to have_http_status(:ok)
       get :show, params: { id: id }
       expect(response).to be_not_found
     end
