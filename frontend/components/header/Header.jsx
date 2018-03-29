@@ -2,7 +2,7 @@ import React from 'react';
 import {Row, Col} from 'react-bootstrap';
 import Search from '../search/Search';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AddRestaurantModal from '../modals/AddRestaurantModal';
+import AddRestaurantModal from '../modals/restaurant/AddRestaurantModal';
 import styles from './Header.scss'
 
 class Header extends React.Component {
@@ -23,7 +23,9 @@ class Header extends React.Component {
                                 <Search/>
                             </Col>
                             <Col md={3}>
-                               <AddRestaurantModal cuisines={this.props.data.cuisines}/>
+                               <AddRestaurantModal
+                                   data={this.props.data.cuisines}
+                                   onSubmitModal={this.props.onSubmitModal}/>
                             </Col>
                         </Row>
                     </div>

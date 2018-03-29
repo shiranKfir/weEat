@@ -12,7 +12,8 @@
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
     "react-google-maps": "^9.4.5",
-    "react-material-ui-form-validator": "^1.1.0"
+    "react-material-ui-form-validator": "^1.1.0",
+    "react-star-rating-component": "^1.4.1"
   },
   "devDependencies": {
     "babel-preset-stage-0": "^6.24.1",
