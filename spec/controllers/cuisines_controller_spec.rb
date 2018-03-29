@@ -5,9 +5,9 @@ describe Api::V1::CuisinesController, type: :controller do
     it 'returns all the cuisines' do
       create_list(:cuisine, 5)
       get :index, format: :json
+      expect(response).to be_success
       parsed_response = JSON.parse(response.body)
       expect(parsed_response.count).to eq(5)
-      expect(response).to be_success
     end
   end
 
@@ -38,7 +38,8 @@ describe Api::V1::CuisinesController, type: :controller do
       expect(parsed_response['name']).to eq('Pizza')
     end
     it 'returns an error when the restaurant does not exist' do
-      put :update, params: { id: cuisine.id + 10, name: 'Pizza' }
+      params = { id: cuisine.id + 10, name: 'Pizza' }
+      put :update, params: params
       expect(response).to be_not_found
     end
   end
@@ -46,9 +47,11 @@ describe Api::V1::CuisinesController, type: :controller do
   describe '#destroy' do
     it 'deletes the restaurant' do
       cuisine = create(:cuisine)
+      expect(response).to have_http_status(:ok)
       id = cuisine.id
       totalCuisines = Cuisine.count
       delete :destroy, params: { id: id }
+      expect(response).to have_http_status(:ok)
       expect(Cuisine.count).to eq(totalCuisines - 1)
     end
   end

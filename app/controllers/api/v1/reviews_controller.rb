@@ -6,8 +6,7 @@ class Api::V1::ReviewsController < ApplicationController
 
   # GET /reviews
   def index
-    @reviews = Review.all
-    render json: @reviews
+    render json: Review.all
   end
 
   # GET /reviews/1
@@ -30,15 +29,16 @@ class Api::V1::ReviewsController < ApplicationController
   # DELETE /reviews/1
   def destroy
     @review.destroy
-    head :no_content, status: :ok
+    head :ok
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_review
-      @review = Review.find(params[:id])
+      @review = Review.find(params.require(:id))
     end
 
+  private
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
       params.permit(:reviewer_name, :rating, :comment, :restaurant_id)

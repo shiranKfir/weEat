@@ -22,14 +22,13 @@ describe Api::V1::ReviewsController, type: :controller do
   describe '#show' do
     it 'returns data of a single review' do
       get :show, params: { id: exisiting_review.id }
+      expect(response).to be_success
       parsed_response = JSON.parse(response.body)
       expect(parsed_response['id']).to eq exisiting_review.id
-      expect(response).to be_success
     end
 
     it 'returns an error when the review does not exist' do
       get :show, params: { id: exisiting_review.id + 10 }
-      parsed_response = JSON.parse(response.body)
       expect(response).to be_not_found
     end
   end
@@ -82,6 +81,7 @@ describe Api::V1::ReviewsController, type: :controller do
     it 'deletes the review' do
       id = exisiting_review.id
       delete :destroy, params: { id: id }
+      expect(response).to have_http_status(:ok)
       get :show, params: { id: id }
       expect(response).to be_not_found
     end
