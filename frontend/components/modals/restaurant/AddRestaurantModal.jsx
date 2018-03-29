@@ -7,7 +7,7 @@ import MenuItem from 'material-ui/MenuItem';
 import Slider from 'material-ui/Slider';
 import Checkbox from 'material-ui/Checkbox';
 import {TextValidator, SelectValidator, ValidatorForm} from 'react-material-ui-form-validator';
-import Api from '../../api/Api';
+import Api from '../../../api/Api';
 import Snackbar from 'material-ui/Snackbar';
 import styles from './AddRestaurantModal.scss'
 
@@ -30,7 +30,7 @@ class AddRestaurantModal extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.cuisineItems = nextProps.cuisines.map(val =>
+        this.cuisineItems = nextProps.data.map(val =>
             <MenuItem value={val.id} key={val.id} primaryText={val.name}/>
         );
     }
@@ -158,11 +158,13 @@ class AddRestaurantModal extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        console.log("this.state.formData", this.state.formData);
         Api.postData('restaurants', this.state.formData).then(res => {
             this.setState({
                 message: "Restaurant was added successfully.",
                 openSnackBar: true,
             });
+            this.props.onSubmitModal(res.data);
             this.handleClose();
             this.reset();
         }).catch(error => {

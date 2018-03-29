@@ -19,11 +19,16 @@ class App extends React.Component {
         const restaurants = await this.getRestaurants();
         this.setState({data: {cuisines, restaurants}});
     }
+    addRestaurantToList = (newRestaurant) => {
+        const {data} = this.state;
+        this.state.data.restaurants.push(newRestaurant);
+        this.setState({data});
+    };
     render(){
         return (
             <div>
                 <Grid fluid={true}>
-                    <Header data={this.state.data}/>
+                    <Header data={this.state.data} onSubmitModal={this.addRestaurantToList}/>
                     <Filters/>
                     <Row>
                         <Col className="custome-col" md={4} style={{height: window.innerHeight - 400, overflow: "auto"}}>
