@@ -12,14 +12,11 @@ import AddReviewModal from '../../modals/review/AddReviewModal';
 import styles from './RestaurantCard.scss'
 
 class RestaurantsCard extends React.Component {
-    constructor(props){
-        super(props);
 
-        this.state = {
-            expanded: false,
-            rating: this.props.restaurant.rating
-        };
-    }
+    state = {
+        expanded: false,
+        rating: this.props.restaurant.rating
+    };
 
     handleExpand = () => {
         this.setState(oldState => {
@@ -61,9 +58,11 @@ class RestaurantsCard extends React.Component {
                                             <img src="/images/10bis.png" />
                                         </span> }
                                         <span className="rating">
-                                        {[...Array(this.state.rating)].map((val, key) =>
-                                            <ActionGrade key={key} style={iconStyles} color={yellow500}/>
-                                        )}
+                                        {
+                                            Array.from([...Array(this.state.rating)], (val, key) =>
+                                                <ActionGrade key={key} style={iconStyles} color={yellow500}/>)
+                                        }
+
                                     </span>
                                     </div>
                                 </div>

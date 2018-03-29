@@ -13,7 +13,7 @@ class Header extends React.Component {
     render(){
         return (
             <MuiThemeProvider>
-                <Row className="bgimage">
+                <div className="bgimage">
                     <div className="container">
                         <h1 className="text-center">WeEat</h1>
                         <Row>
@@ -29,7 +29,7 @@ class Header extends React.Component {
                             </Col>
                         </Row>
                     </div>
-                </Row>
+                </div>
             </MuiThemeProvider>
         );
     }
