@@ -62,7 +62,7 @@ class RestaurantsCard extends React.Component {
                       className="restaurant-card">
                     <CardText expandable={false}>
                         <Row>
-                            <Col md={2}><div className="cuisine_font icon">a</div></Col>
+                            <Col md={2}><div className="cuisine_font icon">{restaurant.cuisine.icon}</div></Col>
                             <Col md={8}>
                                 <div className="restaurant-details">
                                     <div className="title">{restaurant.title}</div>
