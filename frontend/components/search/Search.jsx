@@ -7,10 +7,16 @@ class Search extends React.Component {
         super(props);
     }
 
+    handleSearch = (e) => {
+        this.props.searchRestaurants(e.target.value, 'title');
+    };
+
     render(){
         return (
             <FormGroup className="restaurant-search" bsSize="large">
-                <FormControl type="text" placeholder="Find a restaurant" />
+                <FormControl type="text"
+                             onKeyUp={this.handleSearch}
+                             placeholder="Find a restaurant" />
             </FormGroup>
         );
     }

@@ -3,26 +3,30 @@
   bottom: 10px;
 }
 
-.restaurant-details{
-  line-height: 2;
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.54);
+.restaurant-card{
+  cursor: pointer;
 
-  .title{
-    font-size: 16px;
-    font-weight: 500;
-    color: rgba(0, 0, 0, 0.87);
-  }
+  .restaurant-details{
+    line-height: 2;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.54);
 
-  .other{
-    span{
-      margin-right: 15px;
+    .title{
+      font-size: 16px;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.87);
     }
-  }
 
-  .tenBis{
-    img{
-      width: 40px;
+    .other{
+      span{
+        margin-right: 15px;
+      }
+    }
+
+    .tenBis{
+      img{
+        width: 40px;
+      }
     }
   }
 }

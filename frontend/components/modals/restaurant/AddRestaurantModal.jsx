@@ -79,7 +79,7 @@ class AddRestaurantModal extends React.Component {
 
     handleSelectChange = (event, index, value) => {
         const {formData} = this.state;
-        formData['cuisine_id'] = value;
+        formData.cuisine_id = value;
         this.setState({formData});
     };
 
