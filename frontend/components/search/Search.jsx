@@ -8,7 +8,7 @@ class Search extends React.Component {
     }
 
     handleSearch = (e) => {
-        this.props.searchRestaurants(e.target.value, 'title');
+        this.props.filterRestaurants(e.target.value, 'title');
     };
 
     render(){

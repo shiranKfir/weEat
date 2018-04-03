@@ -48,15 +48,13 @@ class App extends React.Component {
     setCenterMap = (restaurant) => {
         const center = {lat: restaurant.lat, lng: restaurant.lng};
         this._mapComponent.panTo(center);
-        //this.setState({center});
     };
 
     handleMapLoad = (map) => {
         this._mapComponent = map;
-        //this._mapComponent
     };
 
-    searchRestaurants = (query, name) => {
+    filterRestaurants = (query, name) => {
         const {data, filters} = this.state;
         let showRestaurant = true;
         filters[name] = query;
@@ -91,22 +89,20 @@ class App extends React.Component {
             <div>
                 <Grid fluid={true}>
                     <Header data={data}
-                            searchRestaurants={this.searchRestaurants}
+                            filterRestaurants={this.filterRestaurants}
                             onSubmitModal={this.addRestaurantToList}/>
-                    <Filters cuisines={data.cuisines} searchRestaurants={this.searchRestaurants}/>
+                    <Filters cuisines={data.cuisines} filterRestaurants={this.filterRestaurants}/>
                     <Row>
                         <Col className="custome-col" md={4} style={{height: 'calc(100vh - 400px)', overflow: 'auto'}}>
                             <RestaurantsList data={filteredRestaurant} onClickRestaurant={this.setCenterMap}/>
                         </Col>
                         <Col ref="map" className="custome-col" md={8}>
                             {center && <Map restaurants={filteredRestaurant}
-                                            isMarkerShown
                                             googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
                                             loadingElement={<div style={{ height: `100%` }} />}
                                             containerElement={<div style={{ height: 'calc(100vh - 400px)' }} />}
                                             mapElement={<div style={{ height: `100%` }} />}
                                             selected={selected}
-                                            animation={2}
                                             onMapLoad={this.handleMapLoad}
                                             center={center}/>}
                         </Col>

@@ -39,7 +39,7 @@ class Filters extends React.Component {
         const name = target.name;
         filters[name] = value;
         this.setState({filters});
-        this.props.searchRestaurants(value, name);
+        this.props.filterRestaurants(value, name);
     };
 
 
@@ -47,14 +47,14 @@ class Filters extends React.Component {
         const {filters} = this.state;
         filters.cuisine_id = value;
         this.setState({filters});
-        this.props.searchRestaurants(value, 'cuisine_id');
+        this.props.filterRestaurants(value, 'cuisine_id');
     };
 
     handleSlider = (event, value) => {
         const {filters} = this.state;
         filters.max_delivery_time = value;
         this.setState({filters});
-        this.props.searchRestaurants(value, 'max_delivery_time');
+        this.props.filterRestaurants(value, 'max_delivery_time');
     };
 
     onStarClick = (nextValue, prevValue, name) => {
@@ -62,7 +62,7 @@ class Filters extends React.Component {
         const {filters} = this.state;
         filters[name] = value;
         this.setState({filters});
-        this.props.searchRestaurants(value, name);
+        this.props.filterRestaurants(value, name);
     };
 
     render(){
