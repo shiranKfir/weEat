@@ -44,7 +44,7 @@ class RestaurantsCard extends React.Component {
 
     render(){
         const iconStyles = {
-            marginRight: 5,
+            marginRight: 1,
             position: "relative",
             top: 8
         };

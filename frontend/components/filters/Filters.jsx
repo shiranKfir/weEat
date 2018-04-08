@@ -111,7 +111,7 @@ class Filters extends React.Component {
                         <div className="min-rating-title">Minimal Rating</div>
                         <StarRating className="star-component"
                                     name="rating"
-                                    starCount={3}
+                                    starCount={5}
                                     value={filters.rating}
                                     starColor="rgb(233, 30, 99)"
                                     onStarClick={this.onStarClick}

@@ -10,7 +10,7 @@ class App extends React.Component {
 
     state = {
         data : {},
-        filteredRestaurant: [],
+        filteredRestaurants: [],
         center: null,
         selected: {},
         filters: {
@@ -26,7 +26,7 @@ class App extends React.Component {
         const cuisines = await this.getCuisines();
         const restaurants = await this.getRestaurants();
         const center = {lat: restaurants[0].lat, lng: restaurants[0].lng};
-        this.setState({data: {cuisines, restaurants}, filteredRestaurant: restaurants, center, selected: restaurants[0]});
+        this.setState({data: {cuisines, restaurants}, filteredRestaurants: restaurants, center, selected: restaurants[0]});
     }
 
     async getCuisines() {
@@ -60,7 +60,7 @@ class App extends React.Component {
         filters[name] = query;
         this.setState({filters});
 
-        let filteredRestaurant = data.restaurants.filter( restaurant => {
+        const filteredRestaurants = data.restaurants.filter( restaurant => {
             for (const key in filters) {
                 if (key == 'max_delivery_time'){
                     showRestaurant = filters[key] > 0 ? restaurant[key] <= filters[key] : true;
@@ -77,14 +77,14 @@ class App extends React.Component {
             };
             return showRestaurant;
         });
-        const center =  filteredRestaurant.length  ?
-            {lat: filteredRestaurant[0].lat, lng: filteredRestaurant[0].lng} : null;
-        const selected = filteredRestaurant.length ? filteredRestaurant[0] : {};
-        this.setState({filteredRestaurant, center, selected});
+        const center =  filteredRestaurants.length  ?
+            {lat: filteredRestaurants[0].lat, lng: filteredRestaurants[0].lng} : null;
+        const selected = filteredRestaurants.length ? filteredRestaurants[0] : {};
+        this.setState({filteredRestaurants, center, selected});
     };
 
     render(){
-        const {filteredRestaurant, data, center, selected} = this.state;
+        const {filteredRestaurants, data, center, selected} = this.state;
         return (
             <div>
                 <Grid fluid={true}>
@@ -94,10 +94,10 @@ class App extends React.Component {
                     <Filters cuisines={data.cuisines} filterRestaurants={this.filterRestaurants}/>
                     <Row>
                         <Col className="custome-col" md={4} style={{height: 'calc(100vh - 400px)', overflow: 'auto'}}>
-                            <RestaurantsList data={filteredRestaurant} onClickRestaurant={this.setCenterMap}/>
+                            <RestaurantsList data={filteredRestaurants} onClickRestaurant={this.setCenterMap}/>
                         </Col>
                         <Col ref="map" className="custome-col" md={8}>
-                            {center && <Map restaurants={filteredRestaurant}
+                            {center && <Map restaurants={filteredRestaurants}
                                             googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
                                             loadingElement={<div style={{ height: `100%` }} />}
                                             containerElement={<div style={{ height: 'calc(100vh - 400px)' }} />}

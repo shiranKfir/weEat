@@ -135,7 +135,7 @@ class AddReviewModal extends React.Component {
                             <span>Rating</span>
                             <StarRating className="star-component"
                                         name="rating"
-                                        starCount={3}
+                                        starCount={5}
                                         value={formData.rating}
                                         starColor={"rgb(255, 235, 59)"}
                                         onStarClick={this.onStarClick}

@@ -11,7 +11,7 @@ const handleChange = (marker) => {
 const Map = withScriptjs(withGoogleMap(props =>
     <GoogleMap
         ref={props.onMapLoad}
-        defaultZoom={14}
+        defaultZoom={15}
         onCenterChanged={handleChange}
         center={props.center}>
         {
