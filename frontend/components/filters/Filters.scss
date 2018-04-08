@@ -1,4 +1,37 @@
 .filters {
   height: 100px;
   background-color: #263238;
+  color: white;
+  padding-left: 260px;
+
+  .filters-col{
+    padding-left: 40px;
+    padding-right: 40px;
+
+    .star-component{
+      font-size: 32px;
+    }
+
+    .min-rating-title{
+      position: relative;
+      margin-top: 22px;
+      margin-bottom: -9px;
+    }
+
+    .tenBis-filter{
+      margin-top: 22px;
+      margin-left: -40px;
+    }
+
+    .slider{
+      position: relative;
+      top: 5px;
+
+      .slider-title{
+        color: white;
+        position: relative;
+        top: 20px;
+      }
+    }
+  }
 }

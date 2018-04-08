@@ -20,7 +20,7 @@ class Header extends React.Component {
                             <Col md={3}>
                             </Col>
                             <Col md={6}>
-                                <Search/>
+                                <Search filterRestaurants={this.props.filterRestaurants}/>
                             </Col>
                             <Col md={3}>
                                <AddRestaurantModal

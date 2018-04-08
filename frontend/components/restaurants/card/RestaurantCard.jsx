@@ -3,7 +3,6 @@ import {Card, CardText} from 'material-ui/Card';
 import {Row, Col} from 'react-bootstrap';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {yellow500} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 import Expand from 'material-ui/svg-icons/navigation/expand-more';
 import Reduce from 'material-ui/svg-icons/navigation/expand-less';
@@ -15,7 +14,8 @@ class RestaurantsCard extends React.Component {
 
     state = {
         expanded: false,
-        rating: this.props.restaurant.rating
+        rating: this.props.restaurant.rating,
+        cardColor: "white"
     };
 
     handleExpand = () => {
@@ -30,18 +30,36 @@ class RestaurantsCard extends React.Component {
         this.setState({rating: restaurant.rating});
     };
 
+    onClickRestaurant = () => {
+      this.props.onClick(this.props.restaurant);
+    };
+
+    onMouseOver = () => {
+        this.setState({cardColor: "#ECEFF1"});
+    };
+
+    onMouseOut = () => {
+        this.setState({cardColor: "white"});
+    };
+
     render(){
         const iconStyles = {
-            marginRight: 5,
+            marginRight: 1,
             position: "relative",
             top: 8
         };
 
         const {restaurant} = this.props;
-        const {expanded} = this.state;
+        const {expanded, cardColor} = this.state;
+
         return (
             <MuiThemeProvider>
-                <Card expanded={expanded}>
+                <Card expanded={expanded}
+                      style={{backgroundColor: cardColor}}
+                      onClick={this.onClickRestaurant}
+                      onMouseOver={this.onMouseOver}
+                      onMouseOut={this.onMouseOut}
+                      className="restaurant-card">
                     <CardText expandable={false}>
                         <Row>
                             <Col md={2}><div className="cuisine_font icon">{restaurant.cuisine.icon}</div></Col>
@@ -60,7 +78,7 @@ class RestaurantsCard extends React.Component {
                                         <span className="rating">
                                         {
                                             Array.from([...Array(this.state.rating)], (val, key) =>
-                                                <ActionGrade key={key} style={iconStyles} color={yellow500}/>)
+                                                <ActionGrade key={key} style={iconStyles} color={'#E91E63'}/>)
                                         }
 
                                     </span>
@@ -79,7 +97,7 @@ class RestaurantsCard extends React.Component {
                         </Row>
                     </CardText>
                     <CardText expandable={true} actAsExpander={true}>
-                        <ReviewList/>
+                        <ReviewList reviews={restaurant.reviews}/>
                     </CardText>
                 </Card>
             </MuiThemeProvider>

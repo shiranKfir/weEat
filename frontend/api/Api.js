@@ -15,12 +15,6 @@ class Api {
         let url = `${this.baseUrl}${path}`;
         return axios.post(`${url}`, data);
     }
-
-    // async getCuisines() {
-    //     const results = await axios.get(`${apiUrl} + /cuisines`);
-    //     console.log("results", results);
-    //     //return results.length > 0 ? results[0] : null;
-    // }
 }
 
 export default (new Api());

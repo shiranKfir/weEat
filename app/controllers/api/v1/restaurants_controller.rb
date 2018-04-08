@@ -41,6 +41,6 @@ class Api::V1::RestaurantsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def restaurant_params
-      params.permit(:title, :cuisine_id, :rating, :has_10bis, :address, :max_delivery_time)
+      params.permit(:title, :cuisine_id, :rating, :has_10bis, :address, :max_delivery_time, :lat, :lng)
     end
 end
