@@ -2,7 +2,7 @@ class Restaurant < ApplicationRecord
   has_many :reviews, dependent: :destroy
   belongs_to :cuisine
 
-  validates :title, :cuisine_id, :address, :max_delivery_time, :has_10bis, presence: true
+  validates :title, :cuisine_id, :address, :max_delivery_time, presence: true
   validates :title, uniqueness: { scope: :address }
 
   before_save :default_values

@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+require 'zomato_api'
+api_manager = ZomatoApi.new
+api_manager.get_cuisines
+api_manager.get_restaurants
+api_manager.get_reviews
