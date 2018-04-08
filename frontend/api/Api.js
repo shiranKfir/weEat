@@ -3,7 +3,7 @@ import axios from 'axios';
 class Api {
 
     constructor() {
-        this.baseUrl = 'http://localhost:5000/api/v1/';
+        this.baseUrl = '/api/v1/';
     }
 
     getData(path) {
