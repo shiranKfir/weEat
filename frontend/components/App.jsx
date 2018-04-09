@@ -98,7 +98,6 @@ class App extends React.Component {
                         </Col>
                         <Col ref="map" className="custome-col" md={8}>
                             {center && <Map restaurants={filteredRestaurants}
-                                            googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
                                             loadingElement={<div style={{ height: `100%` }} />}
                                             containerElement={<div style={{ height: 'calc(100vh - 400px)' }} />}
                                             mapElement={<div style={{ height: `100%` }} />}

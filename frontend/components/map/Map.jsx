@@ -8,7 +8,7 @@ const handleChange = (marker) => {
 
 };
 
-const Map = withScriptjs(withGoogleMap(props =>
+const Map = withGoogleMap(props =>
     <GoogleMap
         ref={props.onMapLoad}
         defaultZoom={15}
@@ -23,7 +23,7 @@ const Map = withScriptjs(withGoogleMap(props =>
             />))
         }
     </GoogleMap>
-));
+);
 
 function MarkerWithLable(props){
     return(

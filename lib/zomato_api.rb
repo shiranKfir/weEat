@@ -3,7 +3,7 @@ class ZomatoApi
   NY_CITY_ID = 280
 
   def initialize
-    @headers = { 'user-key' => ::Rails.application.config.zomato_api_key,
+    @headers = { 'user-key' => ENV['ZOMATO_API_KEY'],
                  'Accept' => 'application/json'}
     @conn = Faraday.new(url: 'https://developers.zomato.com', headers: @headers)
   end
